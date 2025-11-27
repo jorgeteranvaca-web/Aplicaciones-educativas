@@ -1,0 +1,76 @@
+import { StageData } from './types';
+
+export const BACKGROUND_MUSIC_URL = "https://files.catbox.moe/ms17kg.mp3";
+
+export const STAGES: StageData[] = [
+  {
+    id: 'intro',
+    title: 'El Amanecer de los Números',
+    narrativeSummary: 'Antes del tiempo, el universo era un lienzo en blanco. Tres guardianes surgieron: Pitágoras, Euclides e Hipatia. Juntos, usando números y palabras, dieron orden al caos. Ahora, deben cruzar mundos olvidados donde la matemática es magia y la palabra es poder.',
+    narrativeFull: 'El Amanecer de los Números Eternos. Antes de que existieran los mapas, el universo era un murmullo sin forma. En ese silencio, surgieron los guardianes: Pitágoras, cantor de las esferas; Euclides, arquitecto de la proporción; e Hipatia, tejedora de símbolos. Juntos se adentraron en reinos ocultos. Pero cada mundo exige una prueba: solo quien transforme lo simple en grandioso será digno de cruzar.',
+    imagePrompt: 'Cinematic fantasy digital art. Three ancient greek philosophers Pythagoras, Euclid, and Hypatia standing on a cosmic cliff looking at a swirling nebula of glowing numbers and geometric shapes. Magical atmosphere, starry void background, epic lighting.',
+    isCinematicOnly: true,
+  },
+  {
+    id: 'world-1',
+    title: 'Mundo 1: El Bosque de los Mitos',
+    narrativeSummary: 'En la penumbra primordial, Pitágoras y Euclides dieron forma al mundo con música y geometría, pero faltaba luz. Hipatia tejió símbolos que se volvieron elementos. Ahora, un portal de fuego bloquea el camino con una inscripción ardiente que exige resolver una ecuación antigua.',
+    narrativeFull: 'Mundo 1: El Bosque de los Mitos. Cuentan que Pitágoras y Euclides dieron forma al caos con música y geometría. Sin embargo, la luz carecía de alma hasta que Hipatia bordó símbolos en el aire, creando la primera aurora. Pero al final del sendero, un portal de fuego bloquea el paso, respirando con vida propia y exigiendo una respuesta.',
+    imagePrompt: 'Fantasy landscape. A mystical forest where trees are made of glowing geometric fractals. A large burning portal made of fire stands in the center. Ancient greek philosophers observing. Dark and magical ambiance.',
+    riddleQuestion: "El fuego susurra: 'Soy el doble de un número sagrado. Si me sumas 5, me convierto en 15. ¿Qué número soy?' (2x + 5 = 15)",
+    riddleAnswer: 5,
+  },
+  {
+    id: 'world-2',
+    title: 'Mundo 2: El Reino de las Leyendas',
+    narrativeSummary: 'Un lago sin reflejos oculta al Espectro de las Aguas, un alma condenada injustamente. Euclides halló un patrón de círculos y Pitágoras abrió las aguas con su canto, revelando un collar de memoria. El espectro pide justicia matemática para liberar su verdad.',
+    narrativeFull: 'Mundo 2: El Reino de las Leyendas. Tras el fuego, hallaron un lago sin reflejos donde habitaba un espectro condenado. Euclides midió las piedras, Pitágoras cantó, y las aguas se abrieron revelando un tesoro de memoria, no de oro. El espectro exige equilibrio para recuperar su paz.',
+    imagePrompt: 'Fantasy digital art. A dark mysterious lake at night with no reflection. A ghostly figure emerges from the water holding a glowing crystal necklace. Greek ruins in the background. Blue and silver tones.',
+    riddleQuestion: "El espectro clama: 'Si triplicas mi dolor y le restas 9, no queda nada. ¿Cuál es el valor de mi dolor?' (3x - 9 = 0)",
+    riddleAnswer: 3,
+  },
+  {
+    id: 'world-3',
+    title: 'Mundo 3: El Valle de los Héroes',
+    narrativeSummary: 'Estatuas de guerreros custodian un valle donde las palabras son armas. Un Caballero de Sombras desafía a los viajeros. Hipatia conmueve al guardián narrando historias de héroes anónimos, rompiendo su armadura. Un portal de mármol espera con un enigma final.',
+    narrativeFull: 'Mundo 3: El Valle de los Héroes. En una llanura de estatuas colosales, un Caballero de Sombras les bloqueó el paso. No pedía fuerza, sino épica. Hipatia cantó sobre los héroes silenciosos y la armadura del caballero se fragmentó en luz. Ahora, el portal de mármol aguarda.',
+    imagePrompt: 'Epic fantasy scenery. A valley filled with colossal marble statues of warriors. A dark knight made of shadows stands guarding a white marble portal. Beams of light breaking through the darkness.',
+    riddleQuestion: "El mármol graba: 'La mitad de mi fuerza, sumada a 10, es igual a 20. ¿Cuánta fuerza tengo?' (x/2 + 10 = 20)",
+    riddleAnswer: 20,
+  },
+  {
+    id: 'world-4',
+    title: 'Mundo 4: La Ciudad del Romance',
+    narrativeSummary: 'En la ciudad de la emoción, la Dama de los Suspiros somete a los héroes a pruebas de corazón y deseo. Hipatia demuestra que el amor es la energía que sostiene el universo. Para abrir el Portal del Amor, deben calcular la armonía perfecta.',
+    narrativeFull: 'Mundo 4: La Ciudad del Romance. Aquí la palabra es emoción. Superaron el Reto del Corazón Silente y el Laberinto del Deseo. Hipatia declaró que el amor une todo lo creado, ganando la Rosa de los Ecos Eternos. El portal se abre ante la armonía numérica.',
+    imagePrompt: 'Romantic fantasy city. High towers with bridges of light. A mystical lady holding a glowing rose. Soft pink, purple and gold lighting. Ethereal atmosphere.',
+    riddleQuestion: "La Dama pregunta: 'Si multiplicas mi amor por 4 y añades 4, obtienes 44. ¿Cuál es el número de mi amor?' (4x + 4 = 44)",
+    riddleAnswer: 10,
+  },
+  {
+    id: 'world-5',
+    title: 'Mundo 5: El Laberinto de lo Fantástico',
+    narrativeSummary: 'Un mundo donde la lógica falla. Relojes caóticos y espejos parlantes confunden a Pitágoras y Euclides. Aceptando la intuición sobre la razón pura, obtienen el Astro de la Intuición. Un último enigma ilógico bloquea la salida.',
+    narrativeFull: 'Mundo 5: El Laberinto de lo Fantástico. Aquí los relojes caminan y los espejos hablan. La lógica de Euclides falló, pero al aceptar la intuición, encontraron el camino. El Astro de la Intuición les guía, pero el caos matemático debe ser ordenado una vez más.',
+    imagePrompt: 'Surrealist art. A labyrinth of melting clocks and floating mirrors. Paradoxical geometry like Escher paintings. Colorful and chaotic but beautiful.',
+    riddleQuestion: "El espejo ríe: 'Cinco veces tu miedo, menos 25, es igual a la nada. ¿Cuánto miedo tienes?' (5x - 25 = 0)",
+    riddleAnswer: 5,
+  },
+  {
+    id: 'world-6',
+    title: 'Mundo 6: El Espejo del Futuro',
+    narrativeSummary: 'En un futuro de metal sin sueños, la niña Liora planta una semilla en el asfalto. Un árbol de luz brota, enseñando a las máquinas el lenguaje del latido. La humanidad recuerda el amor. El código final debe ser descifrado para salvar el mañana.',
+    narrativeFull: 'Mundo 6: El Espejo del Futuro. El cielo es de metal y las máquinas olvidaron soñar. Pero Liora plantó una semilla en el asfalto y nació un árbol de luz. Las máquinas no pudieron leerlo, pues era el lenguaje del latido. Ahora, el código final espera ser resuelto.',
+    imagePrompt: 'Cyberpunk fantasy blend. A futuristic grey metallic city. In the center, a glowing, magical tree made of golden light grows from the asphalt. A small girl stands before it. Contrast between cold technology and warm magic.',
+    riddleQuestion: "El árbol susurra: 'Yo y yo mismo sumamos 100. ¿Quién soy?' (x + x = 100)",
+    riddleAnswer: 50,
+  },
+  {
+    id: 'outro',
+    title: 'Desenlace: La Corona de la Sabiduría',
+    narrativeSummary: 'Tras superar todas las pruebas, los guardianes reciben sus dones: el Compás de Luz, el Libro de los Principios y el Espejo de la Claridad. Regresan victoriosos, sabiendo que la verdadera victoria es el conocimiento compartido y la unión de razón y corazón.',
+    narrativeFull: 'Desenlace: La Corona de la Sabiduría. Las torres de mármol brillaron y descendió la Corona. Pitágoras recibió el Compás de Luz; Euclides, el Libro de los Principios; e Hipatia, el Espejo de la Claridad. Regresaron como símbolos de la unión entre razón, imaginación y corazón. La verdadera victoria es la luz compartida.',
+    imagePrompt: 'Epic finale. The three philosophers wearing glowing crowns and holding magical artifacts (compass, book, mirror). They stand triumphantly in a hall of light. Golden and majestic atmosphere.',
+    isCinematicOnly: true,
+  },
+];
