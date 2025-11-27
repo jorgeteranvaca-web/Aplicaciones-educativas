@@ -1,35 +1,40 @@
 import streamlit as st
 import google.generativeai as genai
 
-# 1. Configuración de seguridad
+# --- CONFIGURACIÓN ---
 try:
+    # Conectamos con la llave secreta
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 except Exception as e:
-    st.error("⚠️ Error con la API Key. Revisa los Secrets.")
+    st.error("⚠️ Error: No encontré la API KEY en los Secrets.")
     st.stop()
 
-st.title("🕵️‍♂️ Modo Detective")
-st.write("Vamos a ver qué modelos están disponibles para tu clave.")
+# --- DISEÑO DE LA PÁGINA ---
+st.set_page_config(page_title="Saga Números Eternos", page_icon="➗")
 
-if st.button("🔍 Escanear Modelos"):
-    try:
-        # Preguntamos a Google qué modelos tiene activos
-        lista_modelos = genai.list_models()
-        
-        encontrados = []
-        for m in lista_modelos:
-            # Solo queremos los que sirven para generar texto (generateContent)
-            if 'generateContent' in m.supported_generation_methods:
-                encontrados.append(m.name)
-        
-        if encontrados:
-            st.success(f"¡Conexión Exitosa! Encontré {len(encontrados)} modelos:")
-            # Mostramos la lista exacta
-            for modelo in encontrados:
-                st.code(modelo)
-            st.info("👆 Copia uno de estos nombres EXACTOS (ej: models/gemini-pro) para usar en tu app.")
-        else:
-            st.warning("Me conecté, pero no encontré modelos disponibles.")
+st.title("La Saga de los Números Eternos ♾️")
+st.write("Bienvenido, viajero. Haz tu consulta matemática o sobre la historia:")
+
+# --- CHAT ---
+# Usamos un cuadro de texto para la pregunta
+usuario_input = st.text_input("Tu pregunta:", placeholder="Ej: ¿Cómo resuelvo este acertijo?")
+
+if st.button("Invocar Sabiduría"):
+    if usuario_input:
+        try:
+            # USAMOS EL MODELO QUE ENCONTRAMOS EN TU LISTA (Gemini 2.5 Flash)
+            model = genai.GenerativeModel('models/gemini-2.5-flash')
             
-    except Exception as e:
-        st.error(f"Error grave de conexión: {e}")
+            with st.spinner('Consultando a los oráculos...'):
+                response = model.generate_content(usuario_input)
+                st.success("Respuesta:")
+                st.write(response.text)
+                
+        except Exception as e:
+            st.error(f"Hubo un error técnico: {e}")
+    else:
+        st.warning("Por favor, escribe algo antes de invocar.")
+
+# --- PIE DE PÁGINA ---
+st.markdown("---")
+st.caption("Desarrollado para la clase de Matemáticas")
