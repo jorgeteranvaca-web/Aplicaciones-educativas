@@ -20,7 +20,7 @@ if st.button("Enviar"):
     if usuario_input:
         try:
             # Usamos el modelo flash que es rápido y suele dar menos errores de cuota
-            model = genai.GenerativeModel('gemini-1.5-flash') 
+            model = genai.GenerativeModel('gemini-pro') 
             response = model.generate_content(usuario_input)
             st.write(response.text)
         except Exception as e:
