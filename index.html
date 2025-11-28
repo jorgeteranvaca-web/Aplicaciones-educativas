@@ -1,54 +1,205 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Saga de los Números Eternos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
     <style>
-      body {
-        font-family: 'Lato', sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-      h1, h2, h3, .title-font {
-        font-family: 'Cinzel', serif;
-      }
-      .glass-panel {
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #1e293b; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #475569; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #64748b; 
-      }
+        /* --- DISEÑO (CSS) --- */
+        :root {
+            --color-fondo: #0e1117;
+            --color-fondo-gradiente: linear-gradient(to bottom, #141e30, #243b55);
+            --color-dorado: #FFD700;
+            --color-texto: #e0e0e0;
+            --color-input-bg: #2b303b;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-image: var(--color-fondo-gradiente);
+            background-attachment: fixed; /* El fondo se queda quieto al hacer scroll */
+            color: var(--color-texto);
+            font-family: 'Spectral', serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: rgba(14, 17, 23, 0.8); /* Fondo semi-transparente */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        h1.titulo-principal {
+            font-family: 'Cinzel', serif;
+            color: var(--color-dorado);
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--color-dorado);
+            /* Usamos una imagen de ejemplo, ¡cámbiala si tienes la URL de la tuya! */
+            content: url('https://img.freepik.com/free-photo/fantasy-landscape-with-mystical-light_23-2150985153.jpg?w=1380');
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .chat-section {
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            padding-top: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #4a4a4a;
+            background-color: var(--color-input-bg);
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        button#btn-invocar {
+            padding: 15px 30px;
+            background-color: var(--color-dorado);
+            color: #0e1117;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button#btn-invocar:hover {
+            background-color: #cda700;
+        }
+
+        #respuesta-oraculo {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--color-dorado);
+            border-radius: 5px;
+            display: none; /* Oculto al principio */
+        }
+        
+        .cargando {
+            text-align: center;
+            color: var(--color-dorado);
+            font-style: italic;
+            display: none;
+        }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
-  }
-}
-</script>
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+<body>
+
+    <div class="container">
+        <h1 class="titulo-principal">El Amanecer de los Números</h1>
+        <img class="banner-img" alt="Paisaje místico">
+        
+        <div class="intro-text">
+            <p>Antes del tiempo, el universo era un lienzo en blanco. Tres guardianes surgieron: <strong>Pitágoras, Euclides e Hipatia</strong>. Juntos, usando números y palabras, dieron orden al caos.</p>
+            <p>Ahora, deben cruzar mundos olvidados donde la matemática es magia y la palabra es poder.</p>
+        </div>
+
+        <div class="chat-section">
+            <h3>🔮 Consulta a los Guardianes</h3>
+            <div class="input-group">
+                <input type="text" id="user-input" placeholder="Escribe tu pregunta o acertijo aquí...">
+                <button id="btn-invocar">Invocar Visión</button>
+            </div>
+            
+            <p class="cargando" id="loading-msg">Los astros se alinean...</p>
+            
+            <div id="respuesta-oraculo">
+                </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // 1. Importamos la librería de Google directamente de internet
+        import { GoogleGenerativeAI } from "https://esm.run/@google/genai";
+
+        // 🔴🔴🔴 ¡IMPORTANTE! PEGA TU API KEY AQUÍ ABAJO ENTRE LAS COMILLAS 🔴🔴🔴
+        const API_KEY = "AIzaSyDTaOIxQTFl1odaZGH_kCRgLB2d2SQol1c"; 
+        // 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+
+        // 2. Configuración de la IA
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ 
+            model: "gemini-1.5-flash",
+            // Le damos la personalidad del narrador
+            systemInstruction: "Eres el narrador de un juego de fantasía matemática llamado 'La Saga de los Números Eternos'. Tu tono es épico, místico y antiguo. Responde a las preguntas matemáticas como si fueran magia."
+        });
+
+        // 3. Conexión con los elementos de la página
+        const inputField = document.getElementById('user-input');
+        const button = document.getElementById('btn-invocar');
+        const respuestaBox = document.getElementById('respuesta-oraculo');
+        const loadingMsg = document.getElementById('loading-msg');
+
+        // 4. Función que se ejecuta al hacer clic en el botón
+        button.addEventListener('click', async () => {
+            const pregunta = inputField.value;
+            if (!pregunta) return; // Si está vacío, no hacemos nada
+
+            // Mostrar estado de carga
+            loadingMsg.style.display = 'block';
+            respuestaBox.style.display = 'none';
+            button.disabled = true; // Desactivar botón para que no den doble clic
+
+            try {
+                // Llamamos a la IA
+                const result = await model.generateContent(pregunta);
+                const response = await result.response;
+                const text = response.text();
+
+                // Mostrar respuesta
+                respuestaBox.innerHTML = `<p>${text}</p>`; // Usamos innerHTML para que respete párrafos
+                respuestaBox.style.display = 'block';
+            } catch (error) {
+                respuestaBox.innerHTML = `<p style="color: red;">⚠️ Las fuerzas del caos interfieren: ${error.message}</p>`;
+                respuestaBox.style.display = 'block';
+            } finally {
+                // Ocultar carga y reactivar botón
+                loadingMsg.style.display = 'none';
+                button.disabled = false;
+            }
+        });
+
+        // Permitir enviar con la tecla Enter
+        inputField.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') button.click();
+        });
+
+    </script>
+</body>
 </html>
